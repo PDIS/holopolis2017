@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="comment"></div>
+  <button id="agree">agree</button>
+  <button id="disagree">disagree</button>
+  <button id="pass">pass</button>
+  <input type="hidden" name="tid" id="tid">
+  <script>
+
+    function getComment() {
+      axios({
+        method: 'get',
+        url: 'https://polis-api-proxy.herokuapp.com/api/v3/conversations/9rfmczeith/nextComment',
+        headers: { 'Authorization': 'pkey_84N12fk7d9kderRe9d3sdPm9' },
+        responseType: 'json'
+      }).then(function (res) {
+        console.log(res)
+        var txt = res.data.txt;
+        var tid = res.data.tid;
+        $("#comment").text(txt)
+      });
+    }
+
+    function voteComment(pid,tid,vote) {
+      axios({
+        method: 'post',
+        url: 'https://polis-api-proxy.herokuapp.com/api/v3/votes',
+        headers: {
+          'Authorization': 'pkey_84N12fk7d9kderRe9d3sdPm9',
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        data: {
+          "agid": 0,
+          "conversation_id": "9rfmczeith",
+          "pid": pid,
+          "tid": tid,
+          "vote": vote
+        }
+      }).then(function (res) {
+        var txt = res.data.nextComment.txt;
+        //var tid = res.data.tid;
+        $("#comment").text(txt)
+      });
+    }
+
+    $("#agree").click(function () {
+      //getComment()
+      voteComment(1,2,1)
+    });
+
+    getComment()
+
+  </script>
+</body>
+
+</html>
