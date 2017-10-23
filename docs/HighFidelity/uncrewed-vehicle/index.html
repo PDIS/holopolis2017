@@ -52,7 +52,7 @@
         }
       }).then(function (res) {
         console.log(res)
-        if (typeof res.data.nextComment == "undefined"  || res.data.nextComment === null ) {
+        if (typeof res.data.nextComment == "undefined" || res.data.nextComment === null) {
           window.location.href = "finish.html";
           return;
         }
@@ -84,6 +84,22 @@
       console.log(tid)
     });
 
+    $("#disagree").click(function () {
+      var pid = $("#pid").text();
+      var tid = $("#tid").text()
+      voteComment(pid, tid, -1)
+      console.log(pid)
+      console.log(tid)
+    });
+
+    $("#pass").click(function () {
+      var pid = $("#pid").text();
+      var tid = $("#tid").text()
+      voteComment(pid, tid, 0)
+      console.log(pid)
+      console.log(tid)
+    });
+    
     getComment()
     getParticipation()
   </script>
