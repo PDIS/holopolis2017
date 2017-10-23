@@ -1,16 +1,17 @@
 (function () {
-  // Every great app starts with a great name (keep it short so that it can fit in the tablet button)
   var APP_NAME = "Holopolis";
-  // Get a reference to the tablet 
+  var APP_URL = "https://pdis.github.io/holopolis/HighFidelity/tablet/tablet.html";
+  var APP_ICON = "https://hifi-content.s3.amazonaws.com/faye/gemstoneMagicMaker/gemstoneAppIcon.svg";
   var tablet = Tablet.getTablet("com.highfidelity.interface.tablet.system");
-  // "Install" your cool new app to the tablet
-  // The following lines create a button on the tablet's menu screen
   var button = tablet.addButton({
+    icon: APP_ICON,
     text: APP_NAME
   });
-  // Provide a way to "uninstall" the app
-  // Here, we write a function called "cleanup" which gets executed when
-  // this script stops running. It'll remove the app button from the tablet.
+  function onClicked() {
+    tablet.gotoWebScreen(APP_URL);
+  }
+  button.clicked.connect(onClicked);
+
   function cleanup() {
     tablet.removeButton(button);
   }
