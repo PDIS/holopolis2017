@@ -8,16 +8,36 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
   <title>Document</title>
+  <style>
+    .ui.container {
+      margin-top: 3em;
+      text-align: center
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    p {
+      font-size: 1.5em;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="comment"></div>
-  <button id="agree">agree</button>
-  <button id="disagree">disagree</button>
-  <button id="pass">pass</button>
-  <input type="hidden" name="tid" id="tid">
-  <input type="hidden" name="pid" id="pid">
+  <div class="ui container">
+    <h1 class="ui center aligned header">無人載具科技創新實驗條例</h1>
+    <p id="comment"></p>
+    <button id="agree" class="ui primary button"><i class="thumbs outline up icon"></i>贊成</button>
+    <button id="disagree" class="ui negative button"><i class="thumbs outline down icon"></i>反對</button>
+    <button id="pass" class="ui teal button"><i class="help icon"></i>略過</button>
+    <input type="hidden" name="tid" id="tid">
+    <input type="hidden" name="pid" id="pid">
+
+  </div>
   <script>
     function getComment() {
       axios({
@@ -99,7 +119,7 @@
       console.log(pid)
       console.log(tid)
     });
-    
+
     getComment()
     getParticipation()
   </script>
