@@ -27,9 +27,9 @@ function getJSON(url) {
           "z": 1050 + users[i].y * 5
         }
         var dimension = {
-          "x": 0.1,
-          "y": 0.1,
-          "z": 0.1
+          "x": 1,
+          "y": 1,
+          "z": 1
         }
         var properties = {
           type: "Model",
