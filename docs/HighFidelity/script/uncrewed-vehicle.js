@@ -19,29 +19,32 @@ function getJSON(url) {
           users.push(user)
         }
       }
-      var pos = {
-        "x": 1050 + user[i].x * 5,
-        "y": 2055,
-        "z": 1050 + user[i].y * 5
+
+      for (var i in users) {
+        var pos = {
+          "x": 1050 + user[i].x * 5,
+          "y": 2055,
+          "z": 1050 + user[i].y * 5
+        }
+        var dimension = {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+        var properties = {
+          type: "Sphere",
+          position: pos,
+          dimensions: dimension,
+          name: 'polis-uncrewed-vehicle',
+          color: {
+            red: 0,
+            green: 255,
+            blue: 0
+          },
+        };
+        var Ent = Entities.addEntity(properties);
+        print("Entity added.");
       }
-      var dimension = {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      }
-      var properties = {
-        type: "Sphere",
-        position: pos,
-        dimensions: dimension,
-        name: 'polis-uncrewed-vehicle',
-        color: {
-          red: 0,
-          green: 255,
-          blue: 0
-        },
-      };
-      var Ent = Entities.addEntity(properties);
-      print("Entity added.");
     }
   };
   xhr.send();
