@@ -22,14 +22,14 @@ function getJSON(url) {
 
       for (var i in users) {
         var pos = {
-          "x": 1050 + users[i].x * 5,
+          "x": 1050 + users[i].x * 10,
           "y": 2055,
-          "z": 1050 + users[i].y * 5
+          "z": 1050 + users[i].y * 10
         }
         var dimension = {
-          "x": 1,
-          "y": 1,
-          "z": 1
+          "x": 0.75,
+          "y": 0.75,
+          "z": 0.75
         }
         var properties = {
           type: "Model",
@@ -42,6 +42,9 @@ function getJSON(url) {
             green: 0,
             blue: 0
           },
+          collisionsWillMove: true,
+          shapeType: 'box',
+          collisionless: false
         };
         var Ent = Entities.addEntity(properties);
         print("Entity added.");
