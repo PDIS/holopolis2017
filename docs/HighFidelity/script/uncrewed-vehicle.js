@@ -42,7 +42,7 @@ function getJSON(url) {
             green: 0,
             blue: 0
           },
-          collisionsWillMove: true,
+          //collisionsWillMove: true,
           shapeType: 'box',
           collisionless: false
         };
