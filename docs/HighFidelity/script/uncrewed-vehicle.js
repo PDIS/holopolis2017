@@ -22,23 +22,24 @@ function getJSON(url) {
 
       for (var i in users) {
         var pos = {
-          "x": 1050 + user[i].x * 5,
+          "x": 1050 + users[i].x * 5,
           "y": 2055,
-          "z": 1050 + user[i].y * 5
+          "z": 1050 + users[i].y * 5
         }
         var dimension = {
-          "x": 1,
-          "y": 1,
-          "z": 1
+          "x": 0.1,
+          "y": 0.1,
+          "z": 0.1
         }
         var properties = {
-          type: "Sphere",
+          type: "Model",
+          modelURL: 'https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/sponge.fbx',
           position: pos,
           dimensions: dimension,
           name: 'polis-uncrewed-vehicle',
           color: {
             red: 0,
-            green: 255,
+            green: 0,
             blue: 0
           },
         };
