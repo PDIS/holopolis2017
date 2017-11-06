@@ -33,7 +33,7 @@ function getJSON(url) {
         }
         var properties = {
           type: "Model",
-          modelURL: 'https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/sponge.fbx',
+          modelURL: 'https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/sponge.fbx?raw=true',
           position: pos,
           dimensions: dimension,
           name: 'polis-uncrewed-vehicle',
