@@ -20,6 +20,8 @@ function getJSON(url) {
         }
       }
 
+      var models = ['https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/dona-teodora.fbx?raw=true','https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/male.fbx?raw=true']
+
       for (var i in users) {
         var pos = {
           "x": 1050 + users[i].x * 10,
@@ -31,12 +33,15 @@ function getJSON(url) {
           "y": 0.75,
           "z": 0.75
         }
+        var model = models[Math.floor((Math.random() * 2))];
+        var name = 'polis-uncrewed-vehicle-' + i
+
         var properties = {
           type: "Model",
-          modelURL: 'https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/sponge.fbx?raw=true',
+          modelURL: model,
           position: pos,
           dimensions: dimension,
-          name: 'polis-uncrewed-vehicle',
+          name: name,
           color: {
             red: 0,
             green: 0,
