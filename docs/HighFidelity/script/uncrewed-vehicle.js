@@ -34,7 +34,7 @@ function getJSON(url) {
           "z": 0.75
         }
         var model = models[Math.floor((Math.random() * 2))];
-        var name = 'polis-uncrewed-vehicle-' + i
+        var name = 'polis-uncrewed-vehicle-' + users[i].id
 
         var properties = {
           type: "Model",
@@ -59,13 +59,16 @@ function getJSON(url) {
   xhr.send();
 };
 
-function deleteobject() {
-  var foundEntitiesArray = Entities.findEntities(MyAvatar.position, 100.0);
-  console.log(found)
-  var Ent = Entities.getEntityProperties
-
-  // delete the sphere you just added
-  Entities.deleteEntity(Ent);
+function deletepolis() {
+  var ids = Entities.findEntities(MyAvatar.position, 100);
+  for (var i = 0; i < ids.length; i++) {
+    var id = ids[i];
+    var properties = Entities.getEntityProperties(id);
+    var polisname = "polis-uncrewed-vehicle-" + i;
+    if (properties.name == polisname) {
+      Entities.deleteEntity(id);
+    }
+  }
 }
 
-getJSON('https://polis-api-proxy.herokuapp.com/api/v3/math/pca2?conversation_id=9rfmczeith');
+deletepolis().getJSON('https://polis-api-proxy.herokuapp.com/api/v3/math/pca2?conversation_id=9rfmczeith');
