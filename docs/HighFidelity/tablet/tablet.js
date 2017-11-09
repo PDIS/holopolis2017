@@ -20,7 +20,7 @@
     }
 
     if (event.type === "click") {
-      if (event.type === "Uncrewed-vehicle") {
+      if (event.data === "Uncrewed-vehicle") {
         MyAvatar.goToLocation({x: 1000, y: 2001, z: 1000}, true, true);
       }
     }
