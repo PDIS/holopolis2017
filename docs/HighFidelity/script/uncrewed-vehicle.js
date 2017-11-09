@@ -71,4 +71,4 @@ function deletepolis() {
   }
 }
 
-deletepolis().then(getJSON('https://polis-api-proxy.herokuapp.com/api/v3/math/pca2?conversation_id=9rfmczeith'));
+getJSON('https://polis-api-proxy.herokuapp.com/api/v3/math/pca2?conversation_id=9rfmczeith');
