@@ -29,9 +29,9 @@ function getJSON(url) {
           "z": 1050 + users[i].y * 10
         }
         var dimension = {
-          "x": 0.75,
-          "y": 0.75,
-          "z": 0.75
+          "x": 1,
+          "y": 1,
+          "z": 1
         }
         var model = models[Math.floor((Math.random() * 2))];
         var name = 'polis-uncrewed-vehicle-' + users[i].id
