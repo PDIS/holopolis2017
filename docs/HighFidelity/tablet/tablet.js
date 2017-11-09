@@ -12,6 +12,22 @@
   }
   button.clicked.connect(onClicked);
 
+  function onWebEventReceived(event) {
+    print("tablet.js received a web event: " + event);
+
+    if (typeof event === "string") {
+      event = JSON.parse(event);
+    }
+
+    if (event.type === "click") {
+      if (event.type === "Uncrewed-vehicle") {
+        MyAvatar.goToLocation({x: 1000, y: 2001, z: 1000}, true, true);
+      }
+    }
+  }
+
+  tablet.webEventReceived.connect(onWebEventReceived);
+
   function cleanup() {
     tablet.removeButton(button);
   }

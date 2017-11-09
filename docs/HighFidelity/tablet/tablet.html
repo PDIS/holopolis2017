@@ -115,16 +115,30 @@
       <div class="content">
           <h4>Welcome to Holopolis</h4>
           <p>Add some text here. Enjoy!</p>
-          <p><input type="button" value="Uncrewed-vehicle" onclick="gotoUncrewedvehicle();"></p>
-          <p><input type="button" class="white" value="Button"></p>
-          <p><input type="button" class="red" value="Button"></p>
-          <p><input type="button" class="blue" value="Button"></p>
+          <p><input type="button" class="polis-button" value="Uncrewed-vehicle" onclick="gotoUncrewedvehicle();"></p>
+          <p><input type="button" class="polis-button white" value="White"></p>
+          <p><input type="button" class="polis-button red" value="Red"></p>
+          <p><input type="button" class="polis-button blue" value="Blue"></p>
       </div>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script>
           function main() {
               console.log("ready");
+              var readyEvent = {
+                "type": "ready",
+            };
+            // The event bridge handles event represented as a string the best. So here we first create a Javascript object, then convert to stirng
+            EventBridge.emitWebEvent(JSON.stringify(readyEvent));
+            // Send an event when user click on each of the gemstone buttons
+            $(".polis-button").click(function(){
+                console.log(this.value + " button click");
+                var clickEvent = {
+                    "type": "click",
+                    "data": this.value
+                };
+                EventBridge.emitWebEvent(JSON.stringify(clickEvent));
+            });
           }
 
           function gotoUncrewedvehicle() {
