@@ -3,8 +3,7 @@ function deletepolis() {
   for (var i = 0; i < ids.length; i++) {
     var id = ids[i];
     var properties = Entities.getEntityProperties(id);
-    var polisname = "polis-uncrewed-vehicle-" + i;
-    if (properties.name == polisname) {
+    if (properties.name.includes('polis-uncrewed-vehicle')) {
       Entities.deleteEntity(id);
     }
   }
