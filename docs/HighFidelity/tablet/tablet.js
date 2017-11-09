@@ -21,7 +21,7 @@
 
     if (event.type === "click") {
       if (event.data === "Uncrewed-vehicle") {
-        MyAvatar.goToLocation({x: 1000, y: 2001, z: 1000}, true, true);
+        MyAvatar.goToLocation({x: 1050, y: 2050, z: 1050}, true, true);
       }
     }
   }
