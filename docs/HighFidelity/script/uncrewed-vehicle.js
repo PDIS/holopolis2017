@@ -28,11 +28,6 @@ function getJSON(url) {
           "y": 2055,
           "z": 1050 + users[i].y * 10
         }
-        var dimension = {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        }
         var model = models[Math.floor((Math.random() * 2))];
         var name = 'polis-uncrewed-vehicle-' + users[i].id
 
@@ -40,7 +35,6 @@ function getJSON(url) {
           type: "Model",
           modelURL: model,
           position: pos,
-          dimensions: dimension,
           name: name,
           color: {
             red: 0,
