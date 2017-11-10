@@ -4,4 +4,4 @@ var func = function () {
   for (var i = 0; i < 1000000000; i++) { }
   console.log('end: ' + (new Date() - startTime));
 };
-setInterval(func, 100);
+Script.setInterval(func, 100);
