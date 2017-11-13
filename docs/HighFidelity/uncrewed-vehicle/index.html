@@ -10,6 +10,7 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/1.5.1/fingerprint2.min.js"></script>
   <title>Document</title>
   <style>
     .ui.container {
@@ -31,14 +32,22 @@
   <div class="ui container">
     <h1 class="ui center aligned header">無人載具科技創新實驗條例</h1>
     <p id="comment"></p>
-    <button id="agree" class="ui primary button"><i class="thumbs outline up icon"></i>贊成</button>
-    <button id="disagree" class="ui negative button"><i class="thumbs outline down icon"></i>反對</button>
-    <button id="pass" class="ui teal button"><i class="help icon"></i>略過</button>
+    <button id="agree" class="ui primary button">
+      <i class="thumbs outline up icon"></i>贊成</button>
+    <button id="disagree" class="ui negative button">
+      <i class="thumbs outline down icon"></i>反對</button>
+    <button id="pass" class="ui teal button">
+      <i class="help icon"></i>略過</button>
     <input type="hidden" name="tid" id="tid">
     <input type="hidden" name="pid" id="pid">
 
   </div>
   <script>
+    function getid() {
+      var id = new Date().getTime()/1000;
+      $("#pid").text(id);
+    }
+
     function getComment() {
       axios({
         method: 'get',
@@ -92,9 +101,67 @@
         headers: { 'Authorization': 'pkey_84N12fk7d9kderRe9d3sdPm9' },
         responseType: 'json'
       }).then(function (res) {
+        //console.log(res)
         $("#pid").text(Object.keys(res.data).length)
       });
     }
+
+    function getPolis() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://polis-api-proxy.herokuapp.com/api/v3/math/pca2?conversation_id=9rfmczeith', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var data = JSON.parse(xhr.responseText);
+          var users = [];
+          var members = data['base-clusters'].members;
+          var arrayx = data['base-clusters'].x;
+          var arrayy = data['base-clusters'].y;
+          for (var i in members) {
+            for (var j in members[i]) {
+              var user = {}
+              user.id = members[i][j]
+              user.x = arrayx[i]
+              user.y = arrayy[i]
+              users.push(user)
+            }
+          }
+
+          for (var i in users) {
+            var pos = {
+              "x": 1050 + users[i].x * 10,
+              "y": 2055,
+              "z": 1050 + users[i].y * 10
+            }
+            var dimension = {
+              "x": 0.75,
+              "y": 0.75,
+              "z": 0.75
+            }
+            var model = models[Math.floor((Math.random() * 2))];
+            var name = 'polis-uncrewed-vehicle-' + users[i].id
+
+            var properties = {
+              type: "Model",
+              modelURL: model,
+              position: pos,
+              dimensions: dimension,
+              name: name,
+              color: {
+                red: 0,
+                green: 0,
+                blue: 0
+              },
+              //collisionsWillMove: true,
+              shapeType: 'box',
+              collisionless: false
+            };
+            var Ent = Entities.addEntity(properties);
+            print("Entity added.");
+          }
+        }
+      };
+      xhr.send();
+    };
 
     $("#agree").click(function () {
       var pid = $("#pid").text();
@@ -119,9 +186,9 @@
       console.log(pid)
       console.log(tid)
     });
-
+    getid();
     getComment()
-    getParticipation()
+    //getParticipation()
   </script>
 </body>
 
