@@ -47,7 +47,7 @@ function getJSON(url) {
       for (var i in users) {
         var pos = {
           "x": 1050 + users[i].x * 10,
-          "y": 2055 + Math.floor((Math.random() * 5)),
+          "y": 2055 + Math.floor((Math.random() * 5)*5),
           "z": 1050 + users[i].y * 10
         }
         var model = models[Math.floor((Math.random() * 2))];
