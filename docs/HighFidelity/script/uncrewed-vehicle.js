@@ -42,7 +42,7 @@ function getJSON(url) {
         }
       } */
 
-      var models = ['https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/male.fbx?raw=true', 'https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/eve-weisenhart.fbx?raw=true']
+      //var models = ['https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/male.fbx?raw=true', 'https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/eve-weisenhart.fbx?raw=true']
 
       for (var i in users) {
         var pos = {
@@ -55,7 +55,7 @@ function getJSON(url) {
 
         var properties = {
           type: "Model",
-          modelURL: model,
+          modelURL: 'https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/male.fbx?raw=true',
           position: pos,
           name: name,
           color: {
