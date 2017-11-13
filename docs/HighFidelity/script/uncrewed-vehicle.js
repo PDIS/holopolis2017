@@ -4,8 +4,6 @@ function getJSON(url) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       var data = JSON.parse(xhr.responseText);
-      console.log(data)
-      console.log(data['base-clusters'])
       var users = [];
       var members = data['base-clusters'].members;
       var arrayx = data['base-clusters'].x;
@@ -20,12 +18,36 @@ function getJSON(url) {
         }
       }
 
-      var models = ['https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/male.fbx?raw=true','https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/eve-weisenhart.fbx?raw=true']
+     /*  for (var i in users) {
+        var ids = Entities.findEntities({ x: 1050, y: 2050, z: 1050 }, 100);
+        for (var j = 0; j < ids.length; j++) {
+          var id = ids[j];
+          var properties = Entities.getEntityProperties(id);
+          var pname = "polis-uncrewe d-vehicle-" + users[i].id
+          if (properties.name == pname) {
+
+          }
+        }
+      } */
+
+     /*  var ids = Entities.findEntities({ x: 1050, y: 2050, z: 1050 }, 100);
+      for (var i = 0; i < ids.length; i++) {
+        var id = ids[i];
+        var properties = Entities.getEntityProperties(id);
+        for (var j = 0; j < users.length; j++) {
+          var pname = "polis-uncrewe d-vehicle-" + users[j].id
+          if (properties.name == pname) {
+
+          }
+        }
+      } */
+
+      var models = ['https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/male.fbx?raw=true', 'https://github.com/PDIS/holopolis/blob/master/docs/HighFidelity/model/eve-weisenhart.fbx?raw=true']
 
       for (var i in users) {
         var pos = {
           "x": 1050 + users[i].x * 10,
-          "y": 2055,
+          "y": 2055 + Math.floor((Math.random() * 5)),
           "z": 1050 + users[i].y * 10
         }
         var model = models[Math.floor((Math.random() * 2))];
@@ -65,4 +87,5 @@ function deletepolis() {
   }
 }
 
+//Script.setInterval(getJSON('https://polis-api-proxy.herokuapp.com/api/v3/math/pca2?conversation_id=9rfmczeith'), 1000);
 getJSON('https://polis-api-proxy.herokuapp.com/api/v3/math/pca2?conversation_id=9rfmczeith');
