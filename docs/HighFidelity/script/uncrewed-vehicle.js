@@ -50,7 +50,7 @@ function getJSON(url) {
           "y": 2055 + Math.floor((Math.random() * 5)*5),
           "z": 1050 + users[i].y * 10
         }
-        var model = models[Math.floor((Math.random() * 2))];
+        //var model = models[Math.floor((Math.random() * 2))];
         var name = 'polis-uncrewed-vehicle-' + users[i].id
 
         var properties = {
